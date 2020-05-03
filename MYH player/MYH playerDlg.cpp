@@ -1,10 +1,10 @@
 
-// MYH playerDlg.cpp : 实现文件
+// MYH PlayerDlg.cpp : 实现文件
 //
 
 #include "stdafx.h"
-#include "MYH player.h"
-#include "MYH playerDlg.h"
+#include "MYH Player.h"
+#include "MYH PlayerDlg.h"
 #include "afxdialogex.h"
 
 #ifdef _DEBUG
@@ -45,39 +45,39 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CMYHplayerDlg 对话框
+// CMYHPlayerDlg 对话框
 
 
 
-CMYHplayerDlg::CMYHplayerDlg(CWnd* pParent /*=NULL*/)
+CMYHPlayerDlg::CMYHPlayerDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_MYHPLAYER_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
-void CMYHplayerDlg::DoDataExchange(CDataExchange* pDX)
+void CMYHPlayerDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_OCX1, m_player);
-	DDX_Control(pDX, IDC_FileName, m_fileName);
-	//DDX_Control(pDX, IDC_Refresh, m_refresh);
+	DDX_Control(pDX, IDC_FullScreen, m_fullScreen);
 }
 
-BEGIN_MESSAGE_MAP(CMYHplayerDlg, CDialogEx)
+BEGIN_MESSAGE_MAP(CMYHPlayerDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_FindFiles, &CMYHplayerDlg::OnBnClickedFindfiles)
-	ON_BN_CLICKED(IDC_Exit, &CMYHplayerDlg::OnBnClickedExit)
-	ON_BN_CLICKED(IDC_About, &CMYHplayerDlg::OnBnClickedAbout)
-	ON_EN_CHANGE(IDC_FileName, &CMYHplayerDlg::OnEnChangeFilename)
-	
+	ON_BN_CLICKED(IDC_FindFiles, &CMYHPlayerDlg::OnBnClickedFindfiles)
+	ON_EN_CHANGE(IDC_FileName, &CMYHPlayerDlg::OnEnChangeFilename)
+	ON_BN_CLICKED(IDC_Exit, &CMYHPlayerDlg::OnBnClickedExit)
+	ON_BN_CLICKED(IDC_About, &CMYHPlayerDlg::OnBnClickedAbout)
+	ON_BN_CLICKED(IDC_FreshFile, &CMYHPlayerDlg::OnBnClickedFreshfile)
+	ON_BN_CLICKED(IDC_FullScreen, &CMYHPlayerDlg::OnBnClickedFullscreen)
 END_MESSAGE_MAP()
 
 
-// CMYHplayerDlg 消息处理程序
+// CMYHPlayerDlg 消息处理程序
 
-BOOL CMYHplayerDlg::OnInitDialog()
+BOOL CMYHPlayerDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
@@ -111,7 +111,7 @@ BOOL CMYHplayerDlg::OnInitDialog()
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
-void CMYHplayerDlg::OnSysCommand(UINT nID, LPARAM lParam)
+void CMYHPlayerDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
 	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
 	{
@@ -128,7 +128,7 @@ void CMYHplayerDlg::OnSysCommand(UINT nID, LPARAM lParam)
 //  来绘制该图标。  对于使用文档/视图模型的 MFC 应用程序，
 //  这将由框架自动完成。
 
-void CMYHplayerDlg::OnPaint()
+void CMYHPlayerDlg::OnPaint()
 {
 	if (IsIconic())
 	{
@@ -155,14 +155,14 @@ void CMYHplayerDlg::OnPaint()
 
 //当用户拖动最小化窗口时系统调用此函数取得光标
 //显示。
-HCURSOR CMYHplayerDlg::OnQueryDragIcon()
+HCURSOR CMYHPlayerDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
 
-//浏览文件
-void CMYHplayerDlg::OnBnClickedFindfiles()
+
+void CMYHPlayerDlg::OnBnClickedFindfiles()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	char  szFileFilter[] = "Mp3  File(*.mp3)|*.mp3|"
@@ -188,36 +188,23 @@ void CMYHplayerDlg::OnBnClickedFindfiles()
 	CFileDialog  dlg(TRUE, NULL, NULL, OFN_HIDEREADONLY, szFileFilter);
 
 	if (dlg.DoModal() == IDOK)
+
 	{
+
 		CString PathName = dlg.GetPathName();
 		CString FileName = dlg.GetFileName();
-		SetDlgItemText(IDC_FileName, FileName);
-		m_fileName.SetReadOnly(true);
 		PathName.MakeUpper();
+		SetDlgItemText(IDC_FileName, FileName);
 		m_player.put_URL(PathName);
-		
+		GetDlgItem(IDC_FullScreen)->EnableWindow(true);
+
+
+
 	}
 }
 
 
-
-
-void CMYHplayerDlg::OnBnClickedExit()
-{
-	// TODO: 在此添加控件通知处理程序代码
-	CDialog::OnCancel();
-}
-
-
-void CMYHplayerDlg::OnBnClickedAbout()
-{
-	// TODO: 在此添加控件通知处理程序代码
-	CAboutDlg dlg;
-	dlg.DoModal();
-}
-
-
-void CMYHplayerDlg::OnEnChangeFilename()
+void CMYHPlayerDlg::OnEnChangeFilename()
 {
 	// TODO:  如果该控件是 RICHEDIT 控件，它将不
 	// 发送此通知，除非重写 CDialogEx::OnInitDialog()
@@ -225,4 +212,38 @@ void CMYHplayerDlg::OnEnChangeFilename()
 	// 同时将 ENM_CHANGE 标志“或”运算到掩码中。
 
 	// TODO:  在此添加控件通知处理程序代码
+}
+
+
+void CMYHPlayerDlg::OnBnClickedExit()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CDialog::OnCancel();
+}
+
+
+
+
+void CMYHPlayerDlg::OnBnClickedAbout()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CAboutDlg dlg;
+	dlg.DoModal();
+}
+
+
+void CMYHPlayerDlg::OnBnClickedFreshfile()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	SetDlgItemText(IDC_FileName, NULL);
+	m_player.put_URL(NULL);
+	GetDlgItem(IDC_FullScreen)->EnableWindow(false);
+
+}
+
+
+void CMYHPlayerDlg::OnBnClickedFullscreen()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	m_player.put_fullScreen(true);
 }

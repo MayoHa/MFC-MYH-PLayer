@@ -18,10 +18,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MYH player.h">
+    <ClInclude Include="MYH Player.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="MYH playerDlg.h">
+    <ClInclude Include="MYH PlayerDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -38,10 +38,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MYH player.cpp">
+    <ClCompile Include="MYH Player.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MYH playerDlg.cpp">
+    <ClCompile Include="MYH PlayerDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -52,17 +52,17 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="MYH player.rc">
+    <ResourceCompile Include="MYH Player.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\MYHplayer.rc2">
+    <None Include="res\MYHPlayer.rc2">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\MYH player.ico">
+    <Image Include="res\MYH Player.ico">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

@@ -1,5 +1,5 @@
 
-// MYH playerDlg.h : 头文件
+// MYH PlayerDlg.h : 头文件
 //
 
 #pragma once
@@ -7,12 +7,12 @@
 #include "afxwin.h"
 
 
-// CMYHplayerDlg 对话框
-class CMYHplayerDlg : public CDialogEx
+// CMYHPlayerDlg 对话框
+class CMYHPlayerDlg : public CDialogEx
 {
 // 构造
 public:
-	CMYHplayerDlg(CWnd* pParent = NULL);	// 标准构造函数
+	CMYHPlayerDlg(CWnd* pParent = NULL);	// 标准构造函数
 
 // 对话框数据
 #ifdef AFX_DESIGN_TIME
@@ -34,11 +34,12 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-	CWMPPlayer4 m_player;
 	afx_msg void OnBnClickedFindfiles();
+	CWMPPlayer4 m_player;
+	afx_msg void OnEnChangeFilename();
 	afx_msg void OnBnClickedExit();
 	afx_msg void OnBnClickedAbout();
-	afx_msg void OnEnChangeFilename();
-	CEdit m_fileName;
-
+	afx_msg void OnBnClickedFreshfile();
+	afx_msg void OnBnClickedFullscreen();
+	CButton m_fullScreen;
 };

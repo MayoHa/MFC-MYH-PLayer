@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{194E38BB-480D-434C-952D-4D70F8527977}</ProjectGuid>
-    <RootNamespace>MYHplayer</RootNamespace>
+    <ProjectGuid>{A059E97E-23AA-48C1-9652-A88E0DDF9425}</ProjectGuid>
+    <RootNamespace>MYHPlayer</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <Keyword>MFCProj</Keyword>
   </PropertyGroup>
@@ -91,6 +91,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -182,16 +183,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CWMPPlayer4.h" />
-    <ClInclude Include="MYH player.h" />
-    <ClInclude Include="MYH playerDlg.h" />
+    <ClInclude Include="MYH Player.h" />
+    <ClInclude Include="MYH PlayerDlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CWMPPlayer4.cpp" />
-    <ClCompile Include="MYH player.cpp" />
-    <ClCompile Include="MYH playerDlg.cpp" />
+    <ClCompile Include="MYH Player.cpp" />
+    <ClCompile Include="MYH PlayerDlg.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -200,20 +201,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="MYH player.rc" />
+    <ResourceCompile Include="MYH Player.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\MYHplayer.rc2" />
+    <None Include="res\MYHPlayer.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\MYH player.ico" />
+    <Image Include="res\MYH Player.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties _x007B_6BF52A52-394A-11D3-B153-00C04F79FAA6_x007D_="CWMPPlayer4" RESOURCE_FILE="MYH player.rc" />
+      <UserProperties _x007B_6BF52A52-394A-11D3-B153-00C04F79FAA6_x007D_="CWMPPlayer4" RESOURCE_FILE="MYH Player.rc" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

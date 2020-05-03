@@ -1,10 +1,10 @@
 
-// MYH player.cpp : 定义应用程序的类行为。
+// MYH Player.cpp : 定义应用程序的类行为。
 //
 
 #include "stdafx.h"
-#include "MYH player.h"
-#include "MYH playerDlg.h"
+#include "MYH Player.h"
+#include "MYH PlayerDlg.h"
 #include "CWMPPlayer4.h"
 
 #ifdef _DEBUG
@@ -12,16 +12,16 @@
 #endif
 
 
-// CMYHplayerApp
+// CMYHPlayerApp
 
-BEGIN_MESSAGE_MAP(CMYHplayerApp, CWinApp)
+BEGIN_MESSAGE_MAP(CMYHPlayerApp, CWinApp)
 	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
 
-// CMYHplayerApp 构造
+// CMYHPlayerApp 构造
 
-CMYHplayerApp::CMYHplayerApp()
+CMYHPlayerApp::CMYHPlayerApp()
 {
 	// 支持重新启动管理器
 	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_RESTART;
@@ -31,14 +31,14 @@ CMYHplayerApp::CMYHplayerApp()
 }
 
 
-// 唯一的一个 CMYHplayerApp 对象
+// 唯一的一个 CMYHPlayerApp 对象
 
-CMYHplayerApp theApp;
+CMYHPlayerApp theApp;
 
 
-// CMYHplayerApp 初始化
+// CMYHPlayerApp 初始化
 
-BOOL CMYHplayerApp::InitInstance()
+BOOL CMYHPlayerApp::InitInstance()
 {
 	// 如果一个运行在 Windows XP 上的应用程序清单指定要
 	// 使用 ComCtl32.dll 版本 6 或更高版本来启用可视化方式，
@@ -71,7 +71,7 @@ BOOL CMYHplayerApp::InitInstance()
 	// 例如修改为公司或组织名
 	SetRegistryKey(_T("应用程序向导生成的本地应用程序"));
 
-	CMYHplayerDlg dlg;
+	CMYHPlayerDlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)

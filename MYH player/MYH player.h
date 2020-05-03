@@ -1,5 +1,5 @@
 
-// MYH player.h : PROJECT_NAME 应用程序的主头文件
+// MYH Player.h : PROJECT_NAME 应用程序的主头文件
 //
 
 #pragma once
@@ -11,14 +11,14 @@
 #include "resource.h"		// 主符号
 
 
-// CMYHplayerApp: 
-// 有关此类的实现，请参阅 MYH player.cpp
+// CMYHPlayerApp: 
+// 有关此类的实现，请参阅 MYH Player.cpp
 //
 
-class CMYHplayerApp : public CWinApp
+class CMYHPlayerApp : public CWinApp
 {
 public:
-	CMYHplayerApp();
+	CMYHPlayerApp();
 
 // 重写
 public:
@@ -29,4 +29,4 @@ public:
 	DECLARE_MESSAGE_MAP()
 };
 
-extern CMYHplayerApp theApp;
+extern CMYHPlayerApp theApp;
