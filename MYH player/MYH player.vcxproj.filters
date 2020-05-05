@@ -36,6 +36,297 @@
     <ClInclude Include="CWMPPlayer4.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CWMPCoreEvents.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPOCXEvents.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CAppDispatch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CBarsEffect.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CBattery.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CBatteryPreset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CBatteryRandomPreset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CBatterySavedPreset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CTaskCntrCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPAutoMenuCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPBaseExternal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPBrandDispatch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPButtonCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPButtonCtrlEvents.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPCDDVDWizardExternal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPCdrom.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPCdromCollection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPClosedCaption.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPClosedCaption2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPControls.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPControls2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPControls3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPCore.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPCore2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPCore3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPCustomSlider.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPCustomSliderCtrlEvents.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPDiscoExternal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPDMRAVTransportService.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPDMRConnectionManagerService.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPDMRRenderingControlService.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPDownloadCollection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPDownloadItem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPDownloadItem2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPDownloadManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPDVD.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPEditCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPEffectsCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPEqualizerSettingsCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPError.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPErrorItem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPErrorItem2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPEventObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPExternal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPExternalColors.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPGraphEventHandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPHoverPreviewDispatch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPLayoutSettingsDispatch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPLayoutSubView.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPLayoutView.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPLibraryTreeCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPListBoxCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPListBoxItem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPMedia.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPMedia2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPMedia3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPMediaCollection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPMediaCollection2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPMenuCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPMetadataPicture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPMetadataText.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPNetwork.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPNowDoingDispatch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPNowPlayingHelperDispatch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPObjectExtendedProps.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPOfflineExternal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPPlayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPPlayer2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPPlayer3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPPlayerApplication.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPPlaylist.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPPlaylistArray.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPPlaylistCollection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPPlaylistCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPPlaylistCtrlColumn.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPPluginUIHost.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPQuery.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPRegionalButton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPRegionalButtonCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPRegionalButtonEvents.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPSafeBrowser.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPSettings.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPSettings2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPSkinList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPSliderCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPSliderCtrlEvents.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPStringCollection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPStringCollection2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPSubscriptionServiceExternal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPSubscriptionServiceLimited.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPSubscriptionServicePlayMedia.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPTextCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPTheme.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPVideoCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPVideoCtrlEvents.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPVideoSettingsCtrl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMPWindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MYH Player.cpp">

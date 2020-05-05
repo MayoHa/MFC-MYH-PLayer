@@ -1,5 +1,5 @@
-
-// MYH PlayerDlg.cpp : ÊµÏÖÎÄ¼ş
+ï»¿
+// MYH PlayerDlg.cpp : å®ç°æ–‡ä»¶
 //
 
 #include "stdafx.h"
@@ -12,22 +12,23 @@
 #endif
 
 
-// ÓÃÓÚÓ¦ÓÃ³ÌĞò¡°¹ØÓÚ¡±²Ëµ¥ÏîµÄ CAboutDlg ¶Ô»°¿ò
+
+// ç”¨äºåº”ç”¨ç¨‹åºâ€œå…³äºâ€èœå•é¡¹çš„ CAboutDlg å¯¹è¯æ¡†
 
 class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
 
-// ¶Ô»°¿òÊı¾İ
+// å¯¹è¯æ¡†æ•°æ®
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV æ”¯æŒ
 
-// ÊµÏÖ
+// å®ç°
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -45,7 +46,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CMYHPlayerDlg ¶Ô»°¿ò
+// CMYHPlayerDlg å¯¹è¯æ¡†
 
 
 
@@ -60,6 +61,7 @@ void CMYHPlayerDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_OCX1, m_player);
 	DDX_Control(pDX, IDC_FullScreen, m_fullScreen);
+	DDX_Control(pDX, IDC_SLIDER1, m_slider);
 }
 
 BEGIN_MESSAGE_MAP(CMYHPlayerDlg, CDialogEx)
@@ -72,18 +74,30 @@ BEGIN_MESSAGE_MAP(CMYHPlayerDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_About, &CMYHPlayerDlg::OnBnClickedAbout)
 	ON_BN_CLICKED(IDC_FreshFile, &CMYHPlayerDlg::OnBnClickedFreshfile)
 	ON_BN_CLICKED(IDC_FullScreen, &CMYHPlayerDlg::OnBnClickedFullscreen)
+	ON_BN_CLICKED(IDC_BUTTON1, &CMYHPlayerDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_Stop, &CMYHPlayerDlg::OnBnClickedStop)
+	//ON_NOTIFY(NM_CUSTOMDRAW, IDC_PROGRESS1, &CMYHPlayerDlg::OnNMCustomdrawProgress1)
+	ON_BN_CLICKED(IDC_Quick, &CMYHPlayerDlg::OnBnClickedQuick)
+	ON_BN_CLICKED(IDC_Normal, &CMYHPlayerDlg::OnBnClickedNormal)
+	ON_BN_CLICKED(IDC_Reverse, &CMYHPlayerDlg::OnBnClickedReverse)
+	//ON_WM_DROPFILES()
+	//ON_NOTIFY(TVN_SELCHANGED, IDC_TREE1, &CMYHPlayerDlg::OnTvnSelchangedTree1)
+	//ON_EN_CHANGE(IDC_FileName4, &CMYHPlayerDlg::OnEnChangeFilename4)
+	ON_BN_CLICKED(IDC_Mute, &CMYHPlayerDlg::OnBnClickedMute)
+	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER1, &CMYHPlayerDlg::OnNMCustomdrawSlider1)
+
 END_MESSAGE_MAP()
 
 
-// CMYHPlayerDlg ÏûÏ¢´¦Àí³ÌĞò
+// CMYHPlayerDlg æ¶ˆæ¯å¤„ç†ç¨‹åº
 
 BOOL CMYHPlayerDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// ½«¡°¹ØÓÚ...¡±²Ëµ¥ÏîÌí¼Óµ½ÏµÍ³²Ëµ¥ÖĞ¡£
+	// å°†â€œå…³äº...â€èœå•é¡¹æ·»åŠ åˆ°ç³»ç»Ÿèœå•ä¸­ã€‚
 
-	// IDM_ABOUTBOX ±ØĞëÔÚÏµÍ³ÃüÁî·¶Î§ÄÚ¡£
+	// IDM_ABOUTBOX å¿…é¡»åœ¨ç³»ç»Ÿå‘½ä»¤èŒƒå›´å†…ã€‚
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -101,14 +115,27 @@ BOOL CMYHPlayerDlg::OnInitDialog()
 		}
 	}
 
-	// ÉèÖÃ´Ë¶Ô»°¿òµÄÍ¼±ê¡£  µ±Ó¦ÓÃ³ÌĞòÖ÷´°¿Ú²»ÊÇ¶Ô»°¿òÊ±£¬¿ò¼Ü½«×Ô¶¯
-	//  Ö´ĞĞ´Ë²Ù×÷
-	SetIcon(m_hIcon, TRUE);			// ÉèÖÃ´óÍ¼±ê
-	SetIcon(m_hIcon, FALSE);		// ÉèÖÃĞ¡Í¼±ê
+	// è®¾ç½®æ­¤å¯¹è¯æ¡†çš„å›¾æ ‡ã€‚  å½“åº”ç”¨ç¨‹åºä¸»çª—å£ä¸æ˜¯å¯¹è¯æ¡†æ—¶ï¼Œæ¡†æ¶å°†è‡ªåŠ¨
+	//  æ‰§è¡Œæ­¤æ“ä½œ
+	SetIcon(m_hIcon, TRUE);			// è®¾ç½®å¤§å›¾æ ‡
+	SetIcon(m_hIcon, FALSE);		// è®¾ç½®å°å›¾æ ‡
 
-	// TODO: ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ é¢å¤–çš„åˆå§‹åŒ–ä»£ç 
 
-	return TRUE;  // ³ı·Ç½«½¹µãÉèÖÃµ½¿Ø¼ş£¬·ñÔò·µ»Ø TRUE
+	//è·å–æ§åˆ¶è®¾ç½®çŠ¶æ€
+	m_controller = static_cast<CWMPControls>(m_player.get_controls());
+	m_setting = m_player.get_settings();
+	
+	m_slider.SetRange(0,100);
+	m_slider.SetTicFreq(1);
+	m_slider.SetPos(50);
+	m_setting.put_volume(m_slider.GetPos());
+	//m_player.put_uiMode("Mini");
+	
+
+
+
+	return TRUE;  // é™¤éå°†ç„¦ç‚¹è®¾ç½®åˆ°æ§ä»¶ï¼Œå¦åˆ™è¿”å› TRUE
 }
 
 void CMYHPlayerDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -124,19 +151,19 @@ void CMYHPlayerDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
-// Èç¹ûÏò¶Ô»°¿òÌí¼Ó×îĞ¡»¯°´Å¥£¬ÔòĞèÒªÏÂÃæµÄ´úÂë
-//  À´»æÖÆ¸ÃÍ¼±ê¡£  ¶ÔÓÚÊ¹ÓÃÎÄµµ/ÊÓÍ¼Ä£ĞÍµÄ MFC Ó¦ÓÃ³ÌĞò£¬
-//  Õâ½«ÓÉ¿ò¼Ü×Ô¶¯Íê³É¡£
+// å¦‚æœå‘å¯¹è¯æ¡†æ·»åŠ æœ€å°åŒ–æŒ‰é’®ï¼Œåˆ™éœ€è¦ä¸‹é¢çš„ä»£ç 
+//  æ¥ç»˜åˆ¶è¯¥å›¾æ ‡ã€‚  å¯¹äºä½¿ç”¨æ–‡æ¡£/è§†å›¾æ¨¡å‹çš„ MFC åº”ç”¨ç¨‹åºï¼Œ
+//  è¿™å°†ç”±æ¡†æ¶è‡ªåŠ¨å®Œæˆã€‚
 
 void CMYHPlayerDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // ÓÃÓÚ»æÖÆµÄÉè±¸ÉÏÏÂÎÄ
+		CPaintDC dc(this); // ç”¨äºç»˜åˆ¶çš„è®¾å¤‡ä¸Šä¸‹æ–‡
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Ê¹Í¼±êÔÚ¹¤×÷Çø¾ØĞÎÖĞ¾ÓÖĞ
+		// ä½¿å›¾æ ‡åœ¨å·¥ä½œåŒºçŸ©å½¢ä¸­å±…ä¸­
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -144,7 +171,7 @@ void CMYHPlayerDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// »æÖÆÍ¼±ê
+		// ç»˜åˆ¶å›¾æ ‡
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -153,19 +180,30 @@ void CMYHPlayerDlg::OnPaint()
 	}
 }
 
-//µ±ÓÃ»§ÍÏ¶¯×îĞ¡»¯´°¿ÚÊ±ÏµÍ³µ÷ÓÃ´Ëº¯ÊıÈ¡µÃ¹â±ê
-//ÏÔÊ¾¡£
+//å½“ç”¨æˆ·æ‹–åŠ¨æœ€å°åŒ–çª—å£æ—¶ç³»ç»Ÿè°ƒç”¨æ­¤å‡½æ•°å–å¾—å…‰æ ‡
+//æ˜¾ç¤ºã€‚
 HCURSOR CMYHPlayerDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-
-
+//åŠ è½½
+//void Load(bool isEnabled) {
+//	GetDlgItem(IDC_FullScreen)->EnableWindow(isEnabled);
+//	GetDlgItem(IDC_BUTTON1)->EnableWindow(isEnabled);
+//	GetDlgItem(IDC_Stop)->EnableWindow(isEnabled);
+//	GetDlgItem(IDC_Quick)->EnableWindow(isEnabled);
+//	GetDlgItem(IDC_Normal)->EnableWindow(isEnabled);
+//	GetDlgItem(IDC_Reverse)->EnableWindow(isEnabled);
+//}
+//æµè§ˆæ–‡ä»¶
 void CMYHPlayerDlg::OnBnClickedFindfiles()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
-	char  szFileFilter[] = "Mp3  File(*.mp3)|*.mp3|"
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	char  szFileFilter[] = "All   File(*.*)|*.*|| "
+		"Mp3  File(*.mp3)|*.mp3|"
+
+		"Mp4   File(*.mp4)|*.mp4|"
 
 		"Wma   File(*.wma)|*.wma|"
 
@@ -183,7 +221,7 @@ void CMYHPlayerDlg::OnBnClickedFindfiles()
 
 		"MPEG   File(*.mpeg)|*.mpeg|"
 
-		"All   File(*.*)|*.*|| ";//ÎÄ¼şÀàĞÍ¹ıÂË
+		;//æ–‡ä»¶ç±»å‹è¿‡æ»¤
 
 	CFileDialog  dlg(TRUE, NULL, NULL, OFN_HIDEREADONLY, szFileFilter);
 
@@ -192,58 +230,193 @@ void CMYHPlayerDlg::OnBnClickedFindfiles()
 	{
 
 		CString PathName = dlg.GetPathName();
-		CString FileName = dlg.GetFileName();
 		PathName.MakeUpper();
-		SetDlgItemText(IDC_FileName, FileName);
 		m_player.put_URL(PathName);
-		GetDlgItem(IDC_FullScreen)->EnableWindow(true);
 
+		CString FileName = dlg.GetFileName();
+
+		
+		SetDlgItemText(IDC_FileName, FileName);
+
+		
+		GetDlgItem(IDC_FullScreen)->EnableWindow(true);
+		GetDlgItem(IDC_BUTTON1)->EnableWindow(true);
+		GetDlgItem(IDC_Stop)->EnableWindow(true);
+		GetDlgItem(IDC_Quick)->EnableWindow(true);
+		GetDlgItem(IDC_Normal)->EnableWindow(true);
+		GetDlgItem(IDC_Reverse)->EnableWindow(false);
+		SetDlgItemText(IDC_BUTTON1, "æš‚åœ");
 
 
 	}
 }
 
-
+//æ˜¾ç¤ºæ–‡ä»¶å
 void CMYHPlayerDlg::OnEnChangeFilename()
 {
-	// TODO:  Èç¹û¸Ã¿Ø¼şÊÇ RICHEDIT ¿Ø¼ş£¬Ëü½«²»
-	// ·¢ËÍ´ËÍ¨Öª£¬³ı·ÇÖØĞ´ CDialogEx::OnInitDialog()
-	// º¯Êı²¢µ÷ÓÃ CRichEditCtrl().SetEventMask()£¬
-	// Í¬Ê±½« ENM_CHANGE ±êÖ¾¡°»ò¡±ÔËËãµ½ÑÚÂëÖĞ¡£
+	// TODO:  å¦‚æœè¯¥æ§ä»¶æ˜¯ RICHEDIT æ§ä»¶ï¼Œå®ƒå°†ä¸
+	// å‘é€æ­¤é€šçŸ¥ï¼Œé™¤éé‡å†™ CDialogEx::OnInitDialog()
+	// å‡½æ•°å¹¶è°ƒç”¨ CRichEditCtrl().SetEventMask()ï¼Œ
+	// åŒæ—¶å°† ENM_CHANGE æ ‡å¿—â€œæˆ–â€è¿ç®—åˆ°æ©ç ä¸­ã€‚
 
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 }
 
-
+//é€€å‡ºè½¯ä»¶
 void CMYHPlayerDlg::OnBnClickedExit()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	CDialog::OnCancel();
 }
 
 
 
-
+//å…³äº
 void CMYHPlayerDlg::OnBnClickedAbout()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	CAboutDlg dlg;
 	dlg.DoModal();
 }
 
 
+//æ¸…ç©ºæ–‡ä»¶
 void CMYHPlayerDlg::OnBnClickedFreshfile()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	SetDlgItemText(IDC_FileName, NULL);
 	m_player.put_URL(NULL);
 	GetDlgItem(IDC_FullScreen)->EnableWindow(false);
-
+	GetDlgItem(IDC_BUTTON1)->EnableWindow(false);
+	GetDlgItem(IDC_Stop)->EnableWindow(false);
+	GetDlgItem(IDC_Quick)->EnableWindow(false);
+	GetDlgItem(IDC_Normal)->EnableWindow(false);
+	GetDlgItem(IDC_Reverse)->EnableWindow(false);
+	SetDlgItemText(IDC_BUTTON1, "æ’­æ”¾");
 }
 
-
+//å…¨å±æ’­æ”¾
 void CMYHPlayerDlg::OnBnClickedFullscreen()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	m_player.put_fullScreen(true);
 }
+
+//int mtimer = 0;
+//æ’­æ”¾æš‚åœ
+void CMYHPlayerDlg::OnBnClickedButton1()
+{
+	//mtimer++;
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	CString strButton;
+	GetDlgItemText(IDC_BUTTON1, strButton);
+
+
+
+	if (!strButton.Compare("æ’­æ”¾")) {
+		m_controller.play();
+		SetDlgItemText(IDC_BUTTON1, "æš‚åœ");
+	}
+	else {
+		m_controller.pause();
+		SetDlgItemText(IDC_Quick, "å¿«è¿›");
+		SetDlgItemText(IDC_BUTTON1, "æ’­æ”¾");
+	}
+
+	
+}
+
+
+
+//åœæ­¢æ’­æ”¾
+void CMYHPlayerDlg::OnBnClickedStop()
+{
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	m_controller.stop();
+	SetDlgItemText(IDC_BUTTON1, "æ’­æ”¾");
+	SetDlgItemText(IDC_Quick, "å¿«è¿›");
+
+	
+}
+
+
+
+
+
+
+void CMYHPlayerDlg::OnBnClickedQuick()
+{
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	m_controller.fastForward();
+	SetDlgItemText(IDC_Quick, ">>");
+}
+
+
+void CMYHPlayerDlg::OnBnClickedNormal()
+{
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	m_controller.play();
+	SetDlgItemText(IDC_Quick, "å¿«è¿›");
+	SetDlgItemText(IDC_Reverse, "å¿«é€€");
+}
+
+
+
+
+void CMYHPlayerDlg::OnBnClickedReverse()
+{
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	m_controller.fastReverse();
+	SetDlgItemText(IDC_Reverse, "<<");
+}
+
+//æ‹–æ‹½åŠŸèƒ½
+
+
+
+void CMYHPlayerDlg::OnEnChangeFilename4()
+{
+	// TODO:  å¦‚æœè¯¥æ§ä»¶æ˜¯ RICHEDIT æ§ä»¶ï¼Œå®ƒå°†ä¸
+	// å‘é€æ­¤é€šçŸ¥ï¼Œé™¤éé‡å†™ CDialogEx::OnInitDialog()
+	// å‡½æ•°å¹¶è°ƒç”¨ CRichEditCtrl().SetEventMask()ï¼Œ
+	// åŒæ—¶å°† ENM_CHANGE æ ‡å¿—â€œæˆ–â€è¿ç®—åˆ°æ©ç ä¸­ã€‚
+
+	// TODO:  åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+}
+
+
+//éŸ³é‡æ§åˆ¶
+void CMYHPlayerDlg::OnBnClickedMute()
+{
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	if (m_setting.get_mute()) {
+		((CButton *)GetDlgItem(IDC_Mute))->SetCheck(FALSE);
+		
+		m_setting.put_mute(false);
+	}
+	else {
+		((CButton *)GetDlgItem(IDC_Mute))->SetCheck(TRUE);
+		m_setting.put_mute(true);
+	}
+	if (!m_slider.GetPos()) {
+		((CButton *)GetDlgItem(IDC_Mute))->SetCheck(TRUE);
+	}
+}
+
+
+
+
+void CMYHPlayerDlg::OnNMCustomdrawSlider1(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	m_setting.put_volume(m_slider.GetPos());
+	if (!m_slider.GetPos()) {
+		((CButton *)GetDlgItem(IDC_Mute))->SetCheck(TRUE);
+	}
+	else {
+		((CButton *)GetDlgItem(IDC_Mute))->SetCheck(FALSE);
+	}
+	*pResult = 0;
+}
+
