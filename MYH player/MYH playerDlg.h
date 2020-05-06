@@ -65,4 +65,7 @@ public:
 	afx_msg void OnEnChangeFilesize();
 	afx_msg void OnEnChangeFiletime();
 	afx_msg void OnEnChangeFiledisc();
+	afx_msg void OnStnClickedFilename();
+	afx_msg void OnLbnSelchangeList1();
+	CListBox m_list;
 };

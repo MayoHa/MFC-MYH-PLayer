@@ -1,2 +1,7 @@
-﻿  MYH Player.vcxproj -> F:\08 MFC\MYH player\Debug\MYH Player.exe
-  MYH Player.vcxproj -> F:\08 MFC\MYH player\Debug\MYH Player.pdb (Partial PDB)
+﻿  MYH PlayerDlg.cpp
+f:\08 mfc\myh player\myh player\myh playerdlg.cpp(217): warning C4018: “<”: 有符号/无符号不匹配
+f:\08 mfc\myh player\myh player\myh playerdlg.cpp(233): warning C4477: “sprintf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 2 拥有了类型“CString”
+f:\08 mfc\myh player\myh player\myh playerdlg.cpp(233): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+  MYH Player.vcxproj -> F:\08 MFC\MYH Player\Debug\MYH Player.exe
+  MYH Player.vcxproj -> F:\08 MFC\MYH Player\Debug\MYH Player.pdb (Partial PDB)

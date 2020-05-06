@@ -6,12 +6,15 @@
 #include "MYH Player.h"
 #include "MYH PlayerDlg.h"
 #include "afxdialogex.h"
+#include <vector>
+#include <iostream>
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-
+using namespace std;
 
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
@@ -62,6 +65,7 @@ void CMYHPlayerDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_OCX1, m_player);
 	DDX_Control(pDX, IDC_FullScreen, m_fullScreen);
 	DDX_Control(pDX, IDC_SLIDER1, m_slider);
+	DDX_Control(pDX, IDC_LIST1, m_list);
 }
 
 BEGIN_MESSAGE_MAP(CMYHPlayerDlg, CDialogEx)
@@ -69,7 +73,7 @@ BEGIN_MESSAGE_MAP(CMYHPlayerDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_FindFiles, &CMYHPlayerDlg::OnBnClickedFindfiles)
-	ON_EN_CHANGE(IDC_FileName, &CMYHPlayerDlg::OnEnChangeFilename)
+	//ON_EN_CHANGE(IDC_FileName, &CMYHPlayerDlg::OnEnChangeFilename)
 	ON_BN_CLICKED(IDC_Exit, &CMYHPlayerDlg::OnBnClickedExit)
 	ON_BN_CLICKED(IDC_About, &CMYHPlayerDlg::OnBnClickedAbout)
 	ON_BN_CLICKED(IDC_FreshFile, &CMYHPlayerDlg::OnBnClickedFreshfile)
@@ -86,6 +90,8 @@ BEGIN_MESSAGE_MAP(CMYHPlayerDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_Mute, &CMYHPlayerDlg::OnBnClickedMute)
 	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER1, &CMYHPlayerDlg::OnNMCustomdrawSlider1)
 
+	ON_STN_CLICKED(IDC_FileName, &CMYHPlayerDlg::OnStnClickedFilename)
+	ON_LBN_SELCHANGE(IDC_LIST1, &CMYHPlayerDlg::OnLbnSelchangeList1)
 END_MESSAGE_MAP()
 
 
@@ -197,6 +203,38 @@ HCURSOR CMYHPlayerDlg::OnQueryDragIcon()
 //	GetDlgItem(IDC_Reverse)->EnableWindow(isEnabled);
 //}
 //浏览文件
+int counter=0;
+//vector arrayList(100);
+vector<CString> arrayList;
+
+int CheckRepetition(CString FileName,int counter) {
+	int index = -1;
+	if (!counter) {
+		arrayList.push_back(FileName);
+		return -1;
+	}
+
+	for (int i = 0; i < arrayList.size(); i++) {
+		if (arrayList[i] == FileName) {
+			index = i;
+			break;
+		}
+	}
+
+	if (index == -1) {
+		arrayList.push_back(FileName);
+	}
+	return index;
+}
+
+CString MakeListName(CString FileName,int counter) {
+	CString inListName;
+	char buff[164];
+	sprintf(buff, "%03d""      ""%s", counter + 1, FileName);
+	inListName = buff;
+	return inListName;
+}
+
 void CMYHPlayerDlg::OnBnClickedFindfiles()
 {
 	// TODO: 在此添加控件通知处理程序代码
@@ -224,43 +262,52 @@ void CMYHPlayerDlg::OnBnClickedFindfiles()
 		;//文件类型过滤
 
 	CFileDialog  dlg(TRUE, NULL, NULL, OFN_HIDEREADONLY, szFileFilter);
-
+	
 	if (dlg.DoModal() == IDOK)
 
 	{
-
+	
 		CString PathName = dlg.GetPathName();
 		PathName.MakeUpper();
 		m_player.put_URL(PathName);
 
+
 		CString FileName = dlg.GetFileName();
 
+		int myIndex = CheckRepetition(FileName,counter);
+
+		if (myIndex == -1) {
+			m_list.InsertString(counter,MakeListName(FileName,counter));
+			m_list.SelectString(counter,MakeListName(FileName,counter));
+			counter++;
+		}
+		else
+		{
+			m_list.SelectString(myIndex, MakeListName(FileName, myIndex));
+		}
+
+		//CString yy;
+		//yy.Format("%d", myIndex);
+		//
 		
 		SetDlgItemText(IDC_FileName, FileName);
-
+		SetDlgItemText(IDC_BUTTON1, "暂停");
 		
+
 		GetDlgItem(IDC_FullScreen)->EnableWindow(true);
 		GetDlgItem(IDC_BUTTON1)->EnableWindow(true);
 		GetDlgItem(IDC_Stop)->EnableWindow(true);
 		GetDlgItem(IDC_Quick)->EnableWindow(true);
 		GetDlgItem(IDC_Normal)->EnableWindow(true);
 		GetDlgItem(IDC_Reverse)->EnableWindow(false);
-		SetDlgItemText(IDC_BUTTON1, "暂停");
+
 
 
 	}
 }
 
 //显示文件名
-void CMYHPlayerDlg::OnEnChangeFilename()
-{
-	// TODO:  如果该控件是 RICHEDIT 控件，它将不
-	// 发送此通知，除非重写 CDialogEx::OnInitDialog()
-	// 函数并调用 CRichEditCtrl().SetEventMask()，
-	// 同时将 ENM_CHANGE 标志“或”运算到掩码中。
 
-	// TODO:  在此添加控件通知处理程序代码
-}
 
 //退出软件
 void CMYHPlayerDlg::OnBnClickedExit()
@@ -280,7 +327,7 @@ void CMYHPlayerDlg::OnBnClickedAbout()
 }
 
 
-//清空文件
+//清空列表
 void CMYHPlayerDlg::OnBnClickedFreshfile()
 {
 	// TODO: 在此添加控件通知处理程序代码
@@ -293,6 +340,8 @@ void CMYHPlayerDlg::OnBnClickedFreshfile()
 	GetDlgItem(IDC_Normal)->EnableWindow(false);
 	GetDlgItem(IDC_Reverse)->EnableWindow(false);
 	SetDlgItemText(IDC_BUTTON1, "播放");
+	m_list.ResetContent();
+	counter = 0;
 }
 
 //全屏播放
@@ -420,3 +469,16 @@ void CMYHPlayerDlg::OnNMCustomdrawSlider1(NMHDR *pNMHDR, LRESULT *pResult)
 	*pResult = 0;
 }
 
+
+
+void CMYHPlayerDlg::OnStnClickedFilename()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CMYHPlayerDlg::OnLbnSelchangeList1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//m_list.
+}
