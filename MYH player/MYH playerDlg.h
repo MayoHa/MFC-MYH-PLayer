@@ -68,4 +68,8 @@ public:
 	afx_msg void OnStnClickedFilename();
 	afx_msg void OnLbnSelchangeList1();
 	CListBox m_list;
+	afx_msg void OnBnClickedDeletefile();
+	afx_msg void OnLbnDblclkList1();
+	afx_msg void OnBnClickedLastitem();
+	afx_msg void OnBnClickedNextitem();
 };

@@ -92,6 +92,10 @@ BEGIN_MESSAGE_MAP(CMYHPlayerDlg, CDialogEx)
 
 	ON_STN_CLICKED(IDC_FileName, &CMYHPlayerDlg::OnStnClickedFilename)
 	ON_LBN_SELCHANGE(IDC_LIST1, &CMYHPlayerDlg::OnLbnSelchangeList1)
+	//ON_BN_CLICKED(IDC_DeleteFile, &CMYHPlayerDlg::OnBnClickedDeletefile)
+	ON_LBN_DBLCLK(IDC_LIST1, &CMYHPlayerDlg::OnLbnDblclkList1)
+	ON_BN_CLICKED(IDC_LastItem, &CMYHPlayerDlg::OnBnClickedLastitem)
+	ON_BN_CLICKED(IDC_NextItem, &CMYHPlayerDlg::OnBnClickedNextitem)
 END_MESSAGE_MAP()
 
 
@@ -206,23 +210,25 @@ HCURSOR CMYHPlayerDlg::OnQueryDragIcon()
 int counter=0;
 //vector arrayList(100);
 vector<CString> arrayList;
-
-int CheckRepetition(CString FileName,int counter) {
+vector<CString> arrayFileName;
+int CheckRepetition(CString PathName,CString FileName,int counter) {
 	int index = -1;
 	if (!counter) {
-		arrayList.push_back(FileName);
+		arrayList.push_back(PathName);
+		arrayFileName.push_back(FileName);
 		return -1;
 	}
 
 	for (int i = 0; i < arrayList.size(); i++) {
-		if (arrayList[i] == FileName) {
+		if (arrayList[i] == PathName) {
 			index = i;
 			break;
 		}
 	}
 
 	if (index == -1) {
-		arrayList.push_back(FileName);
+		arrayList.push_back(PathName);
+		arrayFileName.push_back(FileName);
 	}
 	return index;
 }
@@ -261,8 +267,8 @@ void CMYHPlayerDlg::OnBnClickedFindfiles()
 
 		;//文件类型过滤
 
-	CFileDialog  dlg(TRUE, NULL, NULL, OFN_HIDEREADONLY, szFileFilter);
-	
+	CFileDialog  dlg(TRUE, NULL, NULL, OFN_READONLY, szFileFilter);
+	//CFileDialog ddd(TRUE,)
 	if (dlg.DoModal() == IDOK)
 
 	{
@@ -274,7 +280,7 @@ void CMYHPlayerDlg::OnBnClickedFindfiles()
 
 		CString FileName = dlg.GetFileName();
 
-		int myIndex = CheckRepetition(FileName,counter);
+		int myIndex = CheckRepetition(PathName,FileName,counter);
 
 		if (myIndex == -1) {
 			m_list.InsertString(counter,MakeListName(FileName,counter));
@@ -287,9 +293,9 @@ void CMYHPlayerDlg::OnBnClickedFindfiles()
 		}
 
 		//CString yy;
-		//yy.Format("%d", myIndex);
+		//yy.Format("%d", arrayList.size());
 		//
-		
+		//
 		SetDlgItemText(IDC_FileName, FileName);
 		SetDlgItemText(IDC_BUTTON1, "暂停");
 		
@@ -341,6 +347,8 @@ void CMYHPlayerDlg::OnBnClickedFreshfile()
 	GetDlgItem(IDC_Reverse)->EnableWindow(false);
 	SetDlgItemText(IDC_BUTTON1, "播放");
 	m_list.ResetContent();
+	arrayFileName.clear();
+	arrayList.clear();
 	counter = 0;
 }
 
@@ -481,4 +489,53 @@ void CMYHPlayerDlg::OnLbnSelchangeList1()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//m_list.
+}
+
+
+
+void CMYHPlayerDlg::OnLbnDblclkList1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	int selectIndex = m_list.GetCurSel();
+	m_player.put_URL(arrayList[selectIndex].MakeUpper());
+	SetDlgItemText(IDC_FileName,arrayFileName[selectIndex]);
+}
+
+
+
+
+void CMYHPlayerDlg::OnBnClickedLastitem()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	int selectIndex = m_list.GetCurSel();
+	if (selectIndex == 0) {
+		m_list.SetCurSel(arrayList.size()-1);
+		m_player.put_URL(arrayList[arrayList.size()-1].MakeUpper());
+		SetDlgItemText(IDC_FileName, arrayFileName[arrayList.size()-1]);
+	}
+	else {
+		m_list.SetCurSel(selectIndex - 1);
+		m_player.put_URL(arrayList[selectIndex - 1].MakeUpper());
+		SetDlgItemText(IDC_FileName, arrayFileName[selectIndex - 1]);
+	}
+
+
+}
+
+
+void CMYHPlayerDlg::OnBnClickedNextitem()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	int selectIndex = m_list.GetCurSel();
+	if (selectIndex == arrayList.size()-1) {
+		m_list.SetCurSel(0);
+		m_player.put_URL(arrayList[0].MakeUpper());
+		SetDlgItemText(IDC_FileName, arrayFileName[0]);
+	}
+	else {
+		m_list.SetCurSel(selectIndex + 1);
+		m_player.put_URL(arrayList[selectIndex + 1].MakeUpper());
+		SetDlgItemText(IDC_FileName, arrayFileName[selectIndex + 1]);
+	}
+
 }
