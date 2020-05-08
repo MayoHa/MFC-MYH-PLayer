@@ -1,7 +1,13 @@
 # MFC-MYH-PLayer
 A multimedia management system based on MFC framework
 
+清空列表：
 
+![1588925221379](F:\08 MFC\Git版本\MFC-MYH-PLayer\1588925221379.png)
+
+播放视频：
+
+![1588925107665](F:\08 MFC\Git版本\MFC-MYH-PLayer\1588925107665.png)
 
 5-2  基础框架搭建
 
@@ -16,3 +22,6 @@ A multimedia management system based on MFC framework
 ​	1.6版本完成，完善播放器列表功能，增加scollbar和播放选中功能，增加清空列表功能，修复同一文件重复		出现在列表
 
 5-7 1.7版本完成，实现播放器双击播放和切曲功能，增加播放选中效果与打开选中效果，干燥代码
+
+
+
