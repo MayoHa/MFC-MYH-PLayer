@@ -7,7 +7,7 @@ A multimedia management system based on MFC framework
 
 播放视频：
 
-![1588925107665](F:\08 MFC\Git版本\MFC-MYH-PLayer\1588925107665.png)
+![1588925107665](https://github.com/MayoHa/MFC-MYH-PLayer/blob/master/1588925107665.png)
 
 5-2  基础框架搭建
 
