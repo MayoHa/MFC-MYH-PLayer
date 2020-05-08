@@ -3,7 +3,7 @@ A multimedia management system based on MFC framework
 
 清空列表：
 
-![1588925221379](F:\08 MFC\Git版本\MFC-MYH-PLayer\1588925221379.png)
+![1588925221379](https://github.com/MayoHa/MFC-MYH-PLayer/blob/master/1588925221379.png)
 
 播放视频：
 
